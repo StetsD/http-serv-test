@@ -1,0 +1,28 @@
+{
+  "name": "http-serv-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StetsD/http-serv-test.git"
+  },
+  "author": "must.be.std@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StetsD/http-serv-test/issues"
+  },
+  "homepage": "https://github.com/StetsD/http-serv-test#readme",
+  "dependencies": {
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-favicon": "^2.0.1",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "sequelize": "^4.38.0"
+  }
+}
