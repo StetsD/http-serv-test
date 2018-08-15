@@ -13,15 +13,3 @@ node_modules/
 /public
 /assets
 npm-debug.log
-
-//<h1 style="
-//    font-size: 58px;
-//    font-weight: 600;
-//    line-height: 1.1;
-//    position: absolute;
-//    top: 30px;
-//    z-index: 6461;
-//    width: 740px;
-//    left: 260px;
-//    /* text-align: center; */
-//">Атлеты Team Toyota Russia</h1>
