@@ -1,5 +1,5 @@
-let authors = require('./content/author'),
-	text = require('./content/text');
+let authors = require('./semantic-core/author'),
+	text = require('./semantic-core/text');
 
 function generator(min, max, content){
 	let res = '',
@@ -44,11 +44,11 @@ function dateFormater(num){
 }
 
 function capitalizer(str){
-
+	return str[0].toUpperCase() + str.slice(1);
 }
 
 function ender(str, sign){
-
+	return str.slice(0, str.length-1) + sign;
 }
 
 function genContent(fields){
@@ -59,10 +59,20 @@ function genContent(fields){
 
 		switch (elem.type) {
 			case 'string':
-				res[key] = generator(elem.min, elem.max, elem.content);
+				res[key] = capitalizer(
+					ender(
+						generator(elem.min, elem.max, elem.content),
+						''
+					)
+				);
 				break;
 			case 'text':
-				res[key] = generator(elem.min, elem.max, elem.content);
+				res[key] = capitalizer(
+					ender(
+						generator(elem.min, elem.max, elem.content),
+						'.'
+					)
+				);
 				break;
 			case 'date':
 				res[key] = generatorDate(elem.range);
