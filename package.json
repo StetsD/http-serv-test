@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon --inspect index",
-        "test": "test"
+        "test": "test",
+		"db": "sequelize db:drop && sequelize db:create && sequelize db:migrate && node custom-seed"
     },
     "repository": {
         "type": "git",
@@ -18,6 +19,7 @@
     },
     "homepage": "https://github.com/StetsD/http-serv-test#readme",
     "dependencies": {
+        "async": "^2.6.1",
         "koa": "^2.5.2",
         "koa-bodyparser": "^4.2.1",
         "koa-favicon": "^2.0.1",

@@ -1,6 +1,3 @@
-let authors = require('./semantic-core/author'),
-	text = require('./semantic-core/text');
-
 function generator(min, max, content){
 	let res = '',
 		outputLgt = aligner(randomizer, min, max),
@@ -27,7 +24,7 @@ function generatorDate(range){
 		return dateFormater(date);
 	}
 
-	return `${genYear(range.year)}-${genMonth(range.month)}-${genDate(range.date)}`
+	return `${genYear(range.year)}-${genMonth(range.month)}-${genDate(range.date)} 00:00:00`
 }
 
 function randomizer(lgt){
@@ -85,10 +82,4 @@ function genContent(fields){
 	return res;
 }
 
-
-console.log(genContent({
-	title: {type: 'string', min: 1, max: 4, content: text.content},
-	date: {type: 'date', range: {year: {min: 1700, max: 2018}, month: {min: 1, max: 12}, date: {min: 1, max: 31}}},
-	author: {type: 'string', min: 2, max: 2, content: authors.content},
-	description: {type: 'text', min: 20, max: text.content.length, content: text.content}
-}));
+module.exports = genContent;
