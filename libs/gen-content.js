@@ -74,6 +74,9 @@ function genContent(fields){
 			case 'date':
 				res[key] = generatorDate(elem.range);
 				break;
+			case 'number':
+				res[key] = aligner(randomizer, elem.min, elem.max);
+				break;
 			default:
 				break;
 		}

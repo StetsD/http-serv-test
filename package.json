@@ -6,7 +6,7 @@
     "scripts": {
         "start": "nodemon --inspect index",
         "test": "test",
-		"db": "sequelize db:drop && sequelize db:create && sequelize db:migrate && node custom-seed"
+		"db": "sequelize db:drop && sequelize db:create && node custom-seed"
     },
     "repository": {
         "type": "git",
