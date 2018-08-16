@@ -1,9 +1,10 @@
-const Koa = require('koa');
-const app = new Koa();
-const {port} = require('./config');
+const Koa = require('koa'),
+	app = new Koa(),
+	{port} = require('./config'),
+	{sequelize, Sequelize} = require('./db'),
+	router = require('./ctrl');
 
-app.use(async ctx => {
-	ctx.body = "Hello Workl";
-});
+
+router.init(app).bind(app);
 
 app.listen(port);

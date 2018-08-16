@@ -1,11 +1,4 @@
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize({
-	database: 'http_serv_dev',
-	username: 'root',
-	password: '987654321Qq',
-	port: 3306,
-	dialect: 'mysql'
-});
+const {sequelize, Sequelize} = require('./db');
 let {waterfall} = require('async'),
 	authors = require('./semantic-core/author').content,
 	text = require('./semantic-core/text').content,
