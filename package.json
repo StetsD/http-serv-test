@@ -6,7 +6,7 @@
     "scripts": {
         "start": "nodemon --inspect index",
         "test": "test",
-		"db": "sequelize db:drop && sequelize db:create && node custom-seed"
+        "db": "sequelize db:drop && sequelize db:create && node custom-seed"
     },
     "repository": {
         "type": "git",
@@ -29,7 +29,8 @@
         "lodash": "^4.17.10",
         "mysql2": "^1.6.1",
         "sequelize": "^4.38.0",
-        "sequelize-cli": "^4.0.0"
+        "sequelize-cli": "^4.0.0",
+        "univalid": "^1.0.5"
     },
     "devDependencies": {
         "nodemon": "^1.18.3"

@@ -8,7 +8,6 @@ const sequelize = new Sequelize({
 });
 let db = {}
 
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
