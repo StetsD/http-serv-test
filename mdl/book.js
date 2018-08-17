@@ -14,8 +14,8 @@ async function get(){
 async function post({title, date, description, image, author_id}){
 	return await sequelize.query(`
 		INSERT INTO books (title, date, description, image, author_id)
-		VALUES ('${title}', ${date}, ${description}, ${image}, ${author_id})
-	`, {type});
+		VALUES ('${title}', '${date}', '${description}', '${image}', '${author_id}')
+	`);
 }
 
 async function patch({id, title, date, description, image, author_id}){
