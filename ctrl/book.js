@@ -9,6 +9,7 @@ module.exports = router => {
 	});
 
 	router.post(PATH, async (ctx, next) => {
+		console.log(ctx.request.body)
 		if(validate(ctx.request.body)){
 			let {title, date, description, image, author_id} = ctx.request.body;
 			await book.post({title, date, description, image, author_id});
@@ -18,11 +19,11 @@ module.exports = router => {
 		}
 	});
 
-	router.patch(PATH, async (ctx, next) => {
+	router.patch(`${PATH}/:id`, async (ctx, next) => {
 		if(validate(ctx.request.body)){
 			let {title, date, description, image, author_id} = ctx.request.body;
-			await book.patch({title, date, description, image, author_id, id: ctx.request.body.id});
-			ctx.body = {title, date, description, image, author_id, id: ctx.request.body.id};
+			await book.patch({title, date, description, image, author_id, id: ctx.params.id});
+			ctx.body = {title, date, description, image, author_id};
 		}else{
 			ctx.throw(400, {fields: univalid.getState});
 		}
@@ -64,5 +65,4 @@ function validate(body){
 	}else{
 		return false;
 	}
-
 }
