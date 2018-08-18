@@ -1,14 +1,25 @@
 const {sequelize} = require('../db');
 
 let type = sequelize.QueryTypes.SELECT;
+const LIMIT = 100;
 
-async function get(){
-	return await sequelize.query(`
-		SELECT b.id, b.title, b.date, b.description, b.image, b.author_id, a.name AS author
-		FROM books AS b
-		LEFT JOIN authors AS a ON b.author_id = a.id
-		LIMIT 30;
-	`, {type});
+async function get({q, limit} = {}){
+	var query = '';
+
+	if(q){
+		query = `SELECT DISTINCT b.id, b.title, b.date, b.description, b.image, b.author_id, a.name AS author
+				FROM books AS b
+				LEFT JOIN authors AS a ON b.author_id = a.id
+				WHERE LOWER(title) LIKE LOWER('%${q}%')
+				LIMIT ${limit ? limit : LIMIT};`;
+	}else{
+		query = `SELECT b.id, b.title, b.date, b.description, b.image, b.author_id, a.name AS author
+				FROM books AS b
+				LEFT JOIN authors AS a ON b.author_id = a.id
+				LIMIT ${limit ? limit : LIMIT};`;
+	}
+
+	return await sequelize.query(query, {type});
 }
 
 async function post({title, date, description, image, author_id}){

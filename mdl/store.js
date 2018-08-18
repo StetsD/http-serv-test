@@ -1,13 +1,23 @@
 const {sequelize} = require('../db');
 
 let type = sequelize.QueryTypes.SELECT;
+const LIMIT = 100;
 
-async function get(){
-	return await sequelize.query(`
-		SELECT *
-		FROM stores
-		LIMIT 30;
-	`, {type});
+async function get({q, limit} = {}){
+	var query = '';
+
+	if(q){
+		query = `SELECT DISTINCT *
+				FROM stores
+				WHERE LOWER(name) LIKE LOWER('%${q}%')
+				LIMIT ${limit ? limit : LIMIT};`;
+	}else{
+		query = `SELECT *
+				FROM stores
+				LIMIT ${limit ? limit : LIMIT};`;
+	}
+
+	return await sequelize.query(query, {type});
 }
 
 async function post({name, address}){

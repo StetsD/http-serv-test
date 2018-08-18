@@ -119,5 +119,9 @@ async function addPackage(model, packCount, packLgt, type){
 	await addPackage(Store, 1, 100, 'store');
 	await addPackage(BookToStore, 100, 1000, 'book_to_store');
 
+	await sequelize.query(`CREATE INDEX book_title on books(title);`);
+	await sequelize.query(`CREATE INDEX author_name on authors(name);`);
+	await sequelize.query(`CREATE INDEX store_name on stores(name);`);
+
 	sequelize.close();
 })();
