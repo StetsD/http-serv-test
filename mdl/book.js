@@ -24,8 +24,8 @@ async function get({q, limit} = {}){
 
 async function post({title, date, description, image, author_id}){
 	return await sequelize.query(`
-		INSERT INTO books (title, date, description, image, author_id)
-		VALUES ('${title}', '${date}', '${description}', '${image}', '${author_id}');
+		INSERT INTO books (title, date, description, image, author_id, createdAt, updatedAt)
+		VALUES ('${title}', '${date}', '${description}', '${image}', '${author_id}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	`);
 }
 
@@ -33,7 +33,7 @@ async function patch({id, title, date, description, image, author_id}){
 	return await sequelize.query(`
 		UPDATE books
 		SET title = '${title}', date = '${date}', description = '${description}',
-		image = '${image}', author_id = '${author_id}'
+		image = '${image}', author_id = '${author_id}', updatedAt=CURRENT_TIMESTAMP
 		WHERE id = '${id}';
 	`)
 }

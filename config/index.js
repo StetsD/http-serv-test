@@ -1,4 +1,3 @@
 module.exports = {
-	protocol: 'http',
-	port: 8000
+	port: process.env.port || 8000
 }

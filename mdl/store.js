@@ -22,15 +22,15 @@ async function get({q, limit} = {}){
 
 async function post({name, address}){
 	return await sequelize.query(`
-		INSERT INTO stores (name, address)
-		VALUES ('${name}', '${address}');
+		INSERT INTO stores (name, address, createdAt, updatedAt)
+		VALUES ('${name}', '${address}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	`);
 }
 
 async function patch({id, name, address}){
 	return await sequelize.query(`
 		UPDATE stores
-		SET name = '${name}', address = '${address}'
+		SET name = '${name}', address = '${address}', updatedAt=CURRENT_TIMESTAMP
 		WHERE id = '${id}';
 	`)
 }
