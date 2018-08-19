@@ -1,14 +1,23 @@
 const store = require('../mdl/store');
+const {rGet, rSet, eDel} = require('../libs/redisio');
 
 module.exports = router => {
 	router.get(PATH, async (ctx, next) => {
-		ctx.body = await store.get();
+		let cache = await rGet(PATH);
+		if(cache){
+			ctx.body = JSON.parse(cache);
+		}else{
+			let stores = await store.get();
+			rSet(PATH, `${JSON.stringify(stores)}`, 20);
+			ctx.body = stores;
+		}
 	});
 
 	router.post(PATH, async (ctx, next) => {
 		if(router.validate(V_FIELDS, ctx.request.body)){
 			let {name, address} = ctx.request.body;
 			await store.post({name, address});
+			eDel(PATH);
 			ctx.body = {name, address};
 		}else{
 			ctx.throw(400, {fields: router.getState()});

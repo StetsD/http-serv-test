@@ -1,1 +1,3 @@
-sequelize db:create
+need
+add logging
+add tests
