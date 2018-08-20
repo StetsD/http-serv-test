@@ -44,8 +44,7 @@ function generate(count, type){
 	for(let i = 0; i < count; i++){
 		if(type === 'author'){
 			res.push({
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				...dateGen(),
 				...genContent({
 					name: {type: 'string', min: 2, max: 2, content: authors},
 					bio: {type: 'text', min: 20, max: 50, content: text}
@@ -54,8 +53,7 @@ function generate(count, type){
 		}else if(type === 'book'){
 			res.push({
 				image: '/assets/img/books/plug.jpg',
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				...dateGen(),
 				...genContent({
 					title: {type: 'string', min: 1, max: 4, content: text},
 					date: {type: 'date', range: {year: {min: 1700, max: 2018}, month: {min: 1, max: 12}, date: {min: 1, max: 31}}},
@@ -65,8 +63,7 @@ function generate(count, type){
 			});
 		}else if(type === 'store'){
 			res.push({
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				...dateGen(),
 				...genContent({
 					name: {type: 'string', min: 2, max: 3, content: text},
 					address: {type: 'text', min: 1, max: 3, content: cities},
@@ -74,8 +71,7 @@ function generate(count, type){
 			});
 		}else if(type === 'book_to_store'){
 			res.push({
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				...dateGen(),
 				...genContent({
 					book_id: {type: 'number', min: 1, max: 10000},
 					store_id: {type: 'number', min: 1, max: 100},
@@ -86,6 +82,13 @@ function generate(count, type){
 	}
 
 	return res;
+}
+
+function dateGen(){
+	return {
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	}
 }
 
 async function addPackage(model, packCount, packLgt, type){

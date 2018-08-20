@@ -4,11 +4,12 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon --inspect index",
-        "test": "test",
+        "dev:start": "nodemon --inspect index",
         "db:drop": "sequelize db:drop",
-        "db:create": "sequelize db:create && set NODE_ENV=development",
-        "db:reset": "sequelize db:drop && sequelize db:create && node custom-seed"
+        "db:create": "sequelize db:create",
+        "db:reset": "sequelize db:drop && sequelize db:create && node custom-seed",
+        "db:init": "npm run db:create && node custom-seed",
+        "test": "test"
     },
     "repository": {
         "type": "git",
@@ -23,6 +24,7 @@
     "dependencies": {
         "@koa/cors": "^2.2.2",
         "async": "^2.6.1",
+        "bluebird": "^3.5.1",
         "koa": "^2.5.2",
         "koa-body": "^4.0.4",
         "koa-bodyparser": "^4.2.1",
