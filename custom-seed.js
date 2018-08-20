@@ -118,7 +118,7 @@ async function addPackage(model, packCount, packLgt, type){
 	await BookToStore.sync({force: true});
 
 	await addPackage(Author, 10, 100, 'author');
-	await addPackage(Book, 10, 1000, 'book');
+	await addPackage(Book, 100, 1000, 'book');
 	await addPackage(Store, 1, 100, 'store');
 	await addPackage(BookToStore, 100, 1000, 'book_to_store');
 
